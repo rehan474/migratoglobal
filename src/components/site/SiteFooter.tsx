@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 
-import logoGreen from "@/assets/migrato-logo-tp-white.png.asset.json";
+import logoGreen from "@/assets/migrato-logo-tp-white.png";
 import { useT } from "@/i18n";
 
 function buildColumns(t: ReturnType<typeof useT>) {
@@ -40,7 +40,7 @@ export function SiteFooter() {
         <div className="grid gap-12 pb-12 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
           <div>
             <img
-              src={logoGreen.url}
+              src={logoGreen}
               alt="Migrato Dream Jobs"
               className="h-12 w-auto"
               width={200}

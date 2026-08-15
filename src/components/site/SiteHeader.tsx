@@ -2,8 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { Menu, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import logo from "@/assets/migrato-logo-tp.png.asset.json";
-import logoGreen from "@/assets/migrato-logo-tp-white.png.asset.json";
+import logo from "@/assets/migrato-logo-tp.png";
+import logoGreen from "@/assets/migrato-logo-tp-white.png";
 import { Button } from "@/components/ui/button";
 import { LanguageToggle } from "@/components/site/LanguageToggle";
 import { cn } from "@/lib/utils";
@@ -42,7 +42,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-6 px-5 py-3 lg:px-8">
         <Link to="/" className="flex items-center" aria-label={t("Migrato Dream Jobs home", "الصفحة الرئيسية لـ Migrato Dream Jobs")}>
           <img
-            src={scrolled ? logo.url : logoGreen.url}
+            src={scrolled ? logo : logoGreen}
             alt="Migrato Dream Jobs logo"
             className="h-11 w-auto transition-opacity duration-300"
             width={932}
