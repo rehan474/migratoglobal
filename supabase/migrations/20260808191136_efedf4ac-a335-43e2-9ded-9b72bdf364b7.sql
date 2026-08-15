@@ -1,0 +1,1 @@
+DELETE FROM public.inquiries WHERE email = 'preview-test@migratoglobals.com';

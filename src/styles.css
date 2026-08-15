@@ -1,0 +1,194 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Migrato Dream Jobs design system.
+ * Brand navy + emerald green derived from the logo.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+  --color-sand: var(--sand);
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --shadow-soft: 0 1px 2px oklch(0.29 0.16 272 / 0.06), 0 12px 32px -12px oklch(0.29 0.16 272 / 0.18);
+  --shadow-lift: 0 24px 60px -24px oklch(0.29 0.16 272 / 0.35);
+}
+
+:root {
+  --radius: 0.875rem;
+  --background: oklch(0.995 0.003 250);
+  --foreground: oklch(0.24 0.09 272);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.09 272);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.09 272);
+
+  /* Logo navy */
+  --primary: oklch(0.31 0.16 272);
+  --primary-foreground: oklch(0.99 0.005 250);
+
+  /* Logo emerald */
+  --brand: oklch(0.68 0.14 162);
+  --brand-foreground: oklch(0.99 0.005 250);
+  --brand-soft: oklch(0.95 0.04 162);
+
+  --secondary: oklch(0.96 0.015 265);
+  --secondary-foreground: oklch(0.31 0.16 272);
+  --muted: oklch(0.96 0.012 265);
+  --muted-foreground: oklch(0.52 0.04 267);
+  --accent: oklch(0.95 0.04 162);
+  --accent-foreground: oklch(0.35 0.11 165);
+  --sand: oklch(0.975 0.012 95);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.99 0.005 250);
+  --border: oklch(0.91 0.015 265);
+  --input: oklch(0.91 0.015 265);
+  --ring: oklch(0.68 0.14 162);
+
+  --gradient-brand: linear-gradient(135deg, oklch(0.31 0.16 272), oklch(0.45 0.16 250) 55%, oklch(0.68 0.14 162));
+  --gradient-ink: linear-gradient(160deg, oklch(0.24 0.12 272), oklch(0.31 0.16 272));
+}
+
+.dark {
+  --background: oklch(0.18 0.06 272);
+  --foreground: oklch(0.97 0.01 250);
+  --card: oklch(0.23 0.07 272);
+  --card-foreground: oklch(0.97 0.01 250);
+  --popover: oklch(0.23 0.07 272);
+  --popover-foreground: oklch(0.97 0.01 250);
+  --primary: oklch(0.97 0.01 250);
+  --primary-foreground: oklch(0.24 0.12 272);
+  --brand: oklch(0.72 0.14 162);
+  --brand-foreground: oklch(0.18 0.06 272);
+  --brand-soft: oklch(0.3 0.07 190);
+  --secondary: oklch(0.28 0.07 272);
+  --secondary-foreground: oklch(0.97 0.01 250);
+  --muted: oklch(0.28 0.07 272);
+  --muted-foreground: oklch(0.72 0.03 265);
+  --accent: oklch(0.3 0.07 190);
+  --accent-foreground: oklch(0.95 0.02 162);
+  --sand: oklch(0.24 0.05 95);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.72 0.14 162);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+@utility bg-gradient-ink {
+  background-image: var(--gradient-ink);
+}
+
+@utility text-gradient-brand {
+  background-image: var(--gradient-brand);
+  background-clip: text;
+  color: transparent;
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-lift {
+  box-shadow: var(--shadow-lift);
+}
+
+/* Scroll-reveal animation */
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@utility animate-float {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee-x 32s linear infinite;
+}

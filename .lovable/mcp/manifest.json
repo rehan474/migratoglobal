@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.1",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "schengen-visa-gateway",
+      "version": "0.1.0",
+      "title": "Schengen Visa Gateway"
+    },
+    "tools": [
+      {
+        "name": "list_job_openings",
+        "title": "List job openings",
+        "description": "List the active international recruitment programs (country, role, requirements, processing time) offered by Migrato Dream Jobs.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "country": {
+              "description": "Optional country name filter, e.g. 'Malta' or 'Spain'.",
+              "type": "string"
+            }
+          }
+        },
+        "outputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "programs": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "programs"
+          ]
+        }
+      },
+      {
+        "name": "list_visa_services",
+        "title": "List visa services",
+        "description": "List the visa and immigration services Migrato Dream Jobs provides: work permits, Schengen visit visas, student, family, business visas and documentation support.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "services": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "services"
+          ]
+        }
+      },
+      {
+        "name": "list_destination_countries",
+        "title": "List destination countries",
+        "description": "List the featured Schengen and European destination countries with the work-permit or visa route used for each.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "countries": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "countries"
+          ]
+        }
+      },
+      {
+        "name": "answer_visa_faq",
+        "title": "Answer visa FAQ",
+        "description": "Return published FAQ answers about European work visas, Schengen visas, costs and rejections, plus the four-step Migrato Dream Jobs application process.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "query": {
+              "description": "Optional keyword to filter FAQ entries, e.g. 'cost' or 'family'.",
+              "type": "string"
+            }
+          }
+        },
+        "outputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "faqs": {
+              "type": "array",
+              "items": {}
+            },
+            "processSteps": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "faqs",
+            "processSteps"
+          ]
+        }
+      },
+      {
+        "name": "get_company_info",
+        "title": "Get company info",
+        "description": "Get Migrato Dream Jobs company details: what the agency does, the done-base no-advance-payment policy, office addresses and public contact channels.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "company": {
+              "type": "object",
+              "propertyNames": {
+                "type": "string"
+              },
+              "additionalProperties": {}
+            }
+          },
+          "required": [
+            "company"
+          ]
+        }
+      }
+    ]
+  }
+}
