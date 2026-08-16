@@ -1,4 +1,4 @@
-import { sendLovableEmail, EmailAPIError } from "@lovable.dev/email-js";
+import { Resend } from "resend";
 import { render } from "@react-email/render";
 
 import { TEMPLATES, type TemplateName } from "./registry";
@@ -22,43 +22,31 @@ export async function sendTemplateEmail(
     throw new Error(`Unknown email template: ${templateName}`);
   }
 
-  const lovableApiKey = process.env["LOVABLE_API_KEY"];
-  if (!lovableApiKey) {
-    throw new Error("LOVABLE_API_KEY is not configured");
+  const resendApiKey = process.env["RESEND_API_KEY"];
+  if (!resendApiKey) {
+    throw new Error("RESEND_API_KEY is not configured");
   }
+
+  const resend = new Resend(resendApiKey);
 
   const Component = template.component;
   const element = <Component {...(options.templateData ?? {})} />;
   const html = await render(element);
   const text = await render(element, { plainText: true });
 
-  const payload: Parameters<typeof sendLovableEmail>[0] = {
+  const { data, error } = await resend.emails.send({
     to,
     from: FROM_EMAIL,
-    sender_domain: SENDER_DOMAIN,
     subject: template.subject,
     html,
     text,
-  };
+    ...(options.replyTo ? { replyTo: options.replyTo } : {}),
+    ...(options.idempotencyKey ? { headers: { "Idempotency-Key": options.idempotencyKey } } : {}),
+  });
 
-  if (options.idempotencyKey) {
-    payload.idempotency_key = options.idempotencyKey;
+  if (error) {
+    throw new Error(`Resend send failed: ${error.message}`);
   }
 
-  if (options.replyTo) {
-    payload.reply_to = options.replyTo;
-  }
-
-  const result = await sendLovableEmail(payload, { apiKey: lovableApiKey });
-
-  if (!result.success) {
-    throw new EmailAPIError(
-      result.status ? Number(result.status) : 500,
-      result.status ?? "send_failed",
-      null,
-      result.status ?? null,
-    );
-  }
-
-  return { sent: true, messageId: result.message_id };
+  return { sent: true, messageId: data?.id };
 }
